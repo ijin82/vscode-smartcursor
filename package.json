@@ -1,0 +1,30 @@
+{
+  "name": "smart-cursor",
+  "displayName": "Smart Cursor",
+  "description": "Smart clone caret up/down with automatic rollback on opposite direction",
+  "version": "1.0.0",
+  "publisher": "ijin",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:smartCursor.cloneDown",
+    "onCommand:smartCursor.cloneUp"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "smartCursor.cloneDown",
+        "title": "Smart Cursor: Clone Below (or Undo Above)"
+      },
+      {
+        "command": "smartCursor.cloneUp",
+        "title": "Smart Cursor: Clone Above (or Undo Below)"
+      }
+    ]
+  }
+}
