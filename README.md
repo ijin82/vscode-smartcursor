@@ -55,3 +55,64 @@ cp package.json extension.js ~/.vscode/extensions/smart-cursor/
 После копирования файлов выполните в VS Code:
 * **`Ctrl+Shift+P`** → `Developer: Reload Window`  
 (или просто перезапустите редактор).
+
+---
+
+# Smart Cursor for VS Code
+
+A micro-extension for VS Code that brings JetBrains-like (IntelliJ IDEA, GoLand, WebStorm) multi-cursor cloning behavior:
+* Pressing **`Ctrl+Shift+Down`** adds a cursor below.
+* Pressing the opposite shortcut **`Ctrl+Shift+Up`** automatically removes added cursors from the bottom one by one (`cursorUndo`).
+* Pressing **`Ctrl+Shift+Up`** adds a cursor above.
+* Pressing the opposite shortcut **`Ctrl+Shift+Down`** automatically removes added cursors from the top one by one (`cursorUndo`).
+* When only one cursor remains (or when clicking with the mouse / pressing `Escape`), the state resets so you can immediately expand cursors in the opposite direction.
+
+---
+
+## Installation
+
+The extension requires no build step and has zero dependencies (`npm` is not needed; pure JavaScript).
+
+### Quick Installation (Linux):
+Copy the extension files to the VS Code extensions directory:
+
+```bash
+mkdir -p ~/.vscode/extensions/smart-cursor
+cp package.json extension.js ~/.vscode/extensions/smart-cursor/
+```
+
+### Installation on Windows:
+Copy the files into:
+`%USERPROFILE%\.vscode\extensions\smart-cursor\`
+
+---
+
+## Keyboard Shortcuts Configuration (`keybindings.json`)
+
+Open your keyboard shortcuts file in VS Code (`Ctrl+Shift+P` → `Preferences: Open Keyboard Shortcuts (JSON)` or file `~/.config/Code/User/keybindings.json`) and add:
+
+```json
+[
+    {
+        "key": "ctrl+shift+down",
+        "command": "smartCursor.cloneDown",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+up",
+        "command": "smartCursor.cloneUp",
+        "when": "editorTextFocus"
+    }
+]
+```
+
+> **Note:** If you previously had `editor.action.insertCursorBelow`, `editor.action.insertCursorAbove`, or `cursorUndo` bound to these keys, remove them to avoid conflicts.
+
+---
+
+## Activation
+
+After copying the files, reload VS Code:
+* **`Ctrl+Shift+P`** → `Developer: Reload Window`  
+(or simply restart the editor).
+
